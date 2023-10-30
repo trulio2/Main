@@ -8,6 +8,6 @@ import { Concept } from './entities';
 @Module({
   imports: [TypeOrmModule.forFeature([Concept])],
   controllers: [ConceptsController],
-  providers: [ConceptsService, ConceptsRepository],
+  providers: [ConceptsRepository, ConceptsService],
 })
 export class ConceptsModule {}
