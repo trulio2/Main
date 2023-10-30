@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto, UpdateUserDto, UserDto } from './dtos';
 import { User } from './entities';
-import { Serialize } from '../interceptors/serialize.interceptor';
+import { Serialize } from '../interceptors';
 import { UsersService } from './users.service';
 
 @Controller('users')
