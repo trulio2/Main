@@ -24,7 +24,13 @@ export class StreamsService {
 
       if (content) {
         answer += content;
-        client.emit('stream', answer);
+        client.emit(
+          'stream',
+          JSON.stringify({
+            message: answer,
+            error: null,
+          }),
+        );
       }
     }
     client.disconnect();
