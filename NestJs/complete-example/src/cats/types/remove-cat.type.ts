@@ -1,6 +1,6 @@
 import { ObjectType, Field, ID } from '@nestjs/graphql';
 
-@ObjectType('RemoveCatType')
+@ObjectType('RemoveCat')
 export class RemoveCatType {
   @Field()
   name: string;

@@ -47,7 +47,14 @@ export class CatsRepository {
   }
 
   findOne(id: string, user: User): Promise<Cat> {
-    return this.repository.findOneBy({ id, user });
+    return this.repository.findOne({
+      where: {
+        id: id,
+        user: {
+          id: user.id,
+        },
+      },
+    });
   }
 
   remove(cat: Cat): Promise<Cat> {

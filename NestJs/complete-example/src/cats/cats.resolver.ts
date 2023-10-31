@@ -17,7 +17,7 @@ export class CatsResolver {
   create(
     @Args('createCatDto') createCatDto: CreateCatDto,
     @GetUserGraphQl() user: User,
-  ) {
+  ): Promise<CatType> {
     this.logger.verbose(
       `${user.username} - Add Cat - ${JSON.stringify(createCatDto)}`,
     );
@@ -29,7 +29,7 @@ export class CatsResolver {
     @Args('getCatsFilterDto', { nullable: true })
     getCatsFilterDto: GetCatsFilterDto,
     @GetUserGraphQl() user: User,
-  ) {
+  ): Promise<CatType[]> {
     this.logger.verbose(
       `${user.username} - Get All Cats - ${
         getCatsFilterDto ? JSON.stringify(getCatsFilterDto) : ''
@@ -39,13 +39,19 @@ export class CatsResolver {
   }
 
   @Query(() => CatType)
-  findOne(@Args('id', ParseUUIDPipe) id: string, @GetUserGraphQl() user: User) {
+  findOne(
+    @Args('id', ParseUUIDPipe) id: string,
+    @GetUserGraphQl() user: User,
+  ): Promise<CatType> {
     this.logger.verbose(`${user.username} - Get Cat - ${id}`);
     return this.catsService.findOne(id, user);
   }
 
   @Mutation(() => RemoveCatType)
-  remove(@Args('id', ParseUUIDPipe) id: string, @GetUserGraphQl() user: User) {
+  remove(
+    @Args('id', ParseUUIDPipe) id: string,
+    @GetUserGraphQl() user: User,
+  ): Promise<RemoveCatType> {
     this.logger.verbose(`${user.username} - Remove Cat - ${id}`);
     return this.catsService.remove(id, user);
   }
@@ -55,7 +61,7 @@ export class CatsResolver {
     @Args('id', ParseUUIDPipe) id: string,
     @Args('updateCatDto') updateCatDto: UpdateCatDto,
     @GetUserGraphQl() user: User,
-  ) {
+  ): Promise<CatType> {
     this.logger.verbose(
       `${user.username} - Update Cat - ${id} - ${JSON.stringify(updateCatDto)}`,
     );

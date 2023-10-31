@@ -16,7 +16,7 @@ export class UsersResolver {
 
   @Query(() => [UserType])
   @UseGuards(RoleGuard)
-  findAllUsers(@GetUserGraphQl() user: User) {
+  findAllUsers(@GetUserGraphQl() user: User): Promise<UserType[]> {
     this.logger.verbose(`${user.username} - Get All Users`);
     return this.usersService.findAll();
   }
