@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Golang",
+        "definiton": "Go, commonly referred to as Golang, is an open-source programming language designed at Google. It's statically typed and known for its simplicity, performance, and strong support for concurrent programming."
+    },
+    {
+        "name": "Goroutines",
+        "definition": "Goroutines are functions or methods that run concurrently with other functions or methods. They are lightweight and make it easy to achieve concurrent execution."
+    },
+    {
+        "name": "Channels",
+        "definition": "Channels are the primary mechanism to communicate between goroutines, allowing data to be sent and received between them. They synchronize access, ensuring data is safely communicated between goroutines."
+    },
+    {
+        "name": "Interfaces",
+        "definition": "In Go, an interface is a type that specifies a method set. A variable of interface type can store any value that has those methods, providing a way to achieve polymorphism."
+    },
+    {
+        "name": "Structs",
+        "definition": "Structs are Go's way to encapsulate data into single entities, similar to classes in other languages but without inheritance."
+    },
+    {
+        "name": "Slices",
+        "definition": "Slices are a key data type in Go, providing a more powerful alternative to arrays. They are dynamic and can change in size."
+    },
+    {
+        "name": "Maps",
+        "definition": "Maps are Go's built-in associative data type, similar to dictionaries or hashes in other languages. They store key-value pairs."
+    },
+    {
+        "name": "Error Handling",
+        "definition": "Instead of exceptions, Go handles errors by returning an error value (usually the last return value from a function). It's idiomatic to check and handle errors explicitly."
+    },
+    {
+        "name": "Packages",
+        "definition": "Packages provide code encapsulation and reusability. The Go ecosystem provides a vast standard library split into packages, and developers can create their own."
+    },
+    {
+        "name": "Defer",
+        "definition": "The `defer` keyword allows you to schedule a function call to be run after the completion of the containing function. It's commonly used for cleanup actions, like closing a file."
+    },
+    {
+        "name": "Pointers",
+        "definition": "Go supports pointers, allowing you to reference and manipulate the memory address of a value. However, pointer arithmetic isn't supported, unlike languages like C or C++."
+    }
+]

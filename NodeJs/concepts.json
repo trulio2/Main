@@ -1,0 +1,46 @@
+[
+    {
+        "name": "NodeJs",
+        "definition": "NodeJs is a JavaScript runtime built on Chrome's V8 JavaScript engine. It allows for the development of scalable network applications using JavaScript."
+    },
+    {
+        "name": "Event Loop",
+        "definition": "The event loop is the central component of Node.js's non-blocking I/O model. It allows Node.js to perform non-blocking operations by offloading operations to the system kernel whenever possible."
+    },
+    {
+        "name": "Non-blocking I/O",
+        "definition": "This ensures that the Node.js runtime can support thousands of concurrent connections without incurring the cost of thread context switching."
+    },
+    {
+        "name": "Modules",
+        "definition": "Modules allow for code organization by splitting code into reusable pieces. Node.js uses the CommonJS module system."
+    },
+    {
+        "name": "npm",
+        "definition": "The Node Package Manager (npm) is the default package manager for Node.js. It allows developers to install and manage third-party libraries."
+    },
+    {
+        "name": "Buffer",
+        "definition": "The Buffer class in Node.js is designed to handle raw binary data. It provides utilities to manipulate, create, and convert binary data, which is crucial since JavaScript natively supports only strings."
+    },
+    {
+        "name": "EventEmitter",
+        "definition": "EventEmitter is a class in Node.js that facilitates event-driven programming. Objects can emit events, and others can listen to those events."
+    },
+    {
+        "name": "Streams",
+        "definition": "Streams provide a way to handle reading/writing data in chunks, making it possible to read and write large amounts of data without keeping it all in memory."
+    },
+    {
+        "name": "Callbacks",
+        "definition": "A callback is a function passed as an argument to another function. In Node.js, callbacks are often used to handle asynchronous operations."
+    },
+    {
+        "name": "Cluster",
+        "definition": "The cluster module allows you to create child processes (workers), which share the same server port, enabling load balancing over multiple CPU cores."
+    },
+    {
+        "name": "Async/Await",
+        "definition": "Introduced in ES2017 (ES8), async/await provides a cleaner way to handle asynchronous operations compared to callbacks and promises, making asynchronous code look and behave more like synchronous code."
+    }
+]

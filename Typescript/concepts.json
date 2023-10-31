@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Typescript",
+    "definition": "Typescript is a superset of JavaScript that adds optional static typing. It can catch many common bugs during compile-time and provides better tooling and developer experience for large-scale projects."
+  },
+  {
+    "name": "Static Typing",
+    "definition": "TypeScript allows you to define types for your variables, function parameters, and function return values, catching type-related errors during compile-time rather than runtime."
+  },
+  {
+    "name": "Interfaces",
+    "definition": "Interfaces define the shape of an object, ensuring that objects have the required set of properties with the correct types."
+  },
+  {
+    "name": "Classes",
+    "definition": "While JavaScript has classes since ES6, TypeScript enhances classes with static types, access modifiers, and other features."
+  },
+  {
+    "name": "Generics",
+    "definition": "Generics allow you to write reusable and type-safe functions and classes by providing a way to make components work with any type rather than a single one."
+  },
+  {
+    "name": "Type Inference",
+    "definition": "TypeScript can automatically detect and assign the type of a variable based on its initial value, reducing the need to explicitly annotate the type."
+  },
+  {
+    "name": "Enums",
+    "definition": "Enums allow you to define a set of named constants. They can be numeric or string-based."
+  },
+  {
+    "name": "Namespaces",
+    "definition": "Namespaces provide a way to group related code in a block. They were more common before ES6 modules, but they can still be useful in certain situations."
+  },
+  {
+    "name": "Type Guards",
+    "definition": "Type guards are runtime checks that narrow the type within a block of code, making it easier to work with union types."
+  },
+  {
+    "name": "Decorators",
+    "definition": "Decorators are special functions that can be used to modify or annotate classes, properties, methods, and parameters. They're used heavily in frameworks like Angular."
+  },
+  {
+    "name": "Ambient Declarations",
+    "definition": "Ambient declarations are a way to tell the TypeScript compiler about the types of external code, such as libraries included from a CDN. They're often defined in '.d.ts' files."
+  }
+]

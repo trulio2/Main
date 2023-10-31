@@ -1,0 +1,46 @@
+[
+    {
+        "name": "NestJs",
+        "definition": "NestJs is a progressive Node.js framework for building efficient, scalable, and maintainable server-side applications. It uses modern JavaScript, is built with TypeScript (preserves compatibility with pure JavaScript), and combines elements of OOP (Object-Oriented Programming), FP (Functional Programming), and FRP (Functional Reactive Programming)."
+    },
+    {
+        "name": "Modules",
+        "definition": "Modules are a crucial concept in NestJS, helping to organize code in a modular and maintainable way. They encapsulate related functionalities and can import or export providers, controllers, and other modules."
+    },
+    {
+        "name": "Controllers",
+        "definition": "Controllers are responsible for handling incoming requests and returning responses to the client. They can be decorated with routing decorators to determine which function should handle which route."
+    },
+    {
+        "name": "Providers",
+        "definition": "Providers can be any services, factories, repositories, values, etc. that can be injected into other classes via dependency injection. They are the primary way in NestJS to create shared and reusable services or data."
+    },
+    {
+        "name": "Middleware",
+        "definition": "Middleware is a function which is called before the route handler. It can be used for tasks like logging, error handling, or any other function that needs to execute before route handlers."
+    },
+    {
+        "name": "Decorators",
+        "definition": "In NestJS, decorators are used extensively to add metadata to classes/functions/properties. They provide a way to add extra functionality or modify certain behaviors, e.g., `@Get()` for routing, `@Injectable()` for providers."
+    },
+    {
+        "name": "Guards",
+        "definition": "Guards are responsible for determining whether a request should proceed. They can be used for authorization, authentication, and other types of access control."
+    },
+    {
+        "name": "Interceptors",
+        "definition": "Interceptors can transform the data being returned from route handlers, transform the response sent to clients, or even perform logging tasks. They are similar to middlewares but offer more capabilities."
+    },
+    {
+        "name": "Pipes",
+        "definition": "Pipes operate on the arguments that a controller will receive. They can be used for validation, transformation, or any other operation on incoming client data before it's processed by route handlers."
+    },
+    {
+        "name": "Exception Filters",
+        "definition": "Exception filters handle exceptions thrown within your application. They can be used to customize the response sent to the client when an exception occurs."
+    },
+    {
+        "name": "Microservices",
+        "definition": "NestJS supports building microservice architecture applications. It provides an abstraction over various microservice patterns and integrates seamlessly with different transport layers, such as TCP, Redis, and others."
+    }
+]

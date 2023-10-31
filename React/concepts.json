@@ -1,0 +1,46 @@
+[
+    {
+        "name": "React",
+        "definition": "React  is a JavaScript library for building user interfaces. It's widely used for single-page applications and has various concepts that make it unique."
+    },
+    {
+        "name": "Components",
+        "definition": "Components are the building blocks of a React application. They define the visual and behavioral parts of the UI and can be reused throughout the application."
+    },
+    {
+        "name": "Props",
+        "definition": "Props (short for properties) are a way to pass data from parent to child components. They are read-only and help to make the component reusable."
+    },
+    {
+        "name": "State",
+        "definition": "State is a way for components to maintain data that can change over time and re-render when it does."
+    },
+    {
+        "name": "Lifecycle Methods",
+        "definition": "Lifecycle methods are special methods that automatically get called as your component achieves certain milestones."
+    },
+    {
+        "name": "Hooks",
+        "definition": "Hooks are functions that let you use state and other React features without writing a class. Examples include `useState`, `useEffect`, and `useContext`."
+    },
+    {
+        "name": "JSX",
+        "definition": "JSX is a syntax extension for JavaScript that allows you to write HTML-like code within your JavaScript code. It's used to define and describe the structure of UI components."
+    },
+    {
+        "name": "Virtual DOM",
+        "definition": "Virtual DOM is a lightweight in-memory representation of the actual DOM elements. React uses it to achieve fast updates and renders by diffing changes and updating only what's necessary in the real DOM."
+    },
+    {
+        "name": "Context",
+        "definition": "Context provides a way to share values like configuration data, themes, and cached data between components without having to explicitly pass them via props."
+    },
+    {
+        "name": "Redux",
+        "definition": "Though not part of the React core, Redux is a popular library used with React for state management. It provides a centralized store for state and allows components to dispatch actions and subscribe to changes."
+    },
+    {
+        "name": "React Router",
+        "definition": "Also not part of React core, React Router is a popular library for adding navigation capabilities into your React application. It allows you to define routes and render different components based on the current URL."
+    }
+]

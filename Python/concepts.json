@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Python",
+        "definition": "Python is a high-level, interpreted programming language known for its simplicity, readability, and versatility. Python is an open-source programming language that was created in 1991 by Guido van Rossum. It is used for web development (server-side), software development, mathematics, system scripting."
+    },
+    {
+        "name": "Indentation",
+        "definition": "In Python, indentation is used to determine the structure of the code, instead of braces as in many other languages. This enforces readability."
+    },
+    {
+        "name": "Dynamic Typing",
+        "definition": "Python is dynamically typed, which means the type of a variable is determined at runtime, not in advance."
+    },
+    {
+        "name": "Lists",
+        "definition": "Lists are ordered collections of items, similar to arrays in other languages. They are mutable and can contain items of different types."
+    },
+    {
+        "name": "Tuples",
+        "definition": "Tuples are similar to lists but are immutable. This means you can't add, modify, or remove items after the tuple is created."
+    },
+    {
+        "name": "Dictionaries",
+        "definition": "Dictionaries are collections of key-value pairs and can be used to store data in a way that makes it easy to retrieve."
+    },
+    {
+        "name": "Functions",
+        "definition": "Functions in Python are defined using the `def` keyword. They can take parameters and return values."
+    },
+    {
+        "name": "Classes and Objects",
+        "definition": "Python supports object-oriented programming. Classes are used to create user-defined data structures, and objects are instances of these classes."
+    },
+    {
+        "name": "Modules and Packages",
+        "definition": "Modules are .py files that consist of Python code. A Python package is a way of organizing related modules into a single directory hierarchy."
+    },
+    {
+        "name": "List Comprehensions",
+        "definition": "List comprehensions provide a concise way to create lists. They can be used to represent complex transformations and operations on existing lists or other iterables."
+    },
+    {
+        "name": "Decorators",
+        "definition": "Decorators in Python are a powerful tool that allows you to modify the behavior of a function or class method without changing its source code."
+    }
+]

@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Javascript",
+        "definition": "Javascript is a high-level, often just-in-time compiled, and multi-paradigm programming language. It's widely used for web development to make web pages interactive."
+    },
+    {
+        "name": "Variables",
+        "definition": "Variables are used to store data values. In JavaScript, variables can be declared using `var`, `let`, `const`, and directly without any keyword (not recommended)."
+    },
+    {
+        "name": "Functions",
+        "definition": "Functions are blocks of reusable code. They can take parameters and return values."
+    },
+    {
+        "name": "Objects",
+        "definition": "Objects are collections of key-value pairs. They can store data and functions that act upon that data."
+    },
+    {
+        "name": "Arrays",
+        "definition": "Arrays are ordered collections of items. Each item can be accessed by its index in the array."
+    },
+    {
+        "name": "Event Handling",
+        "definition": "JavaScript in the browser can detect and respond to user actions, such as clicks or keypresses, using event handlers."
+    },
+    {
+        "name": "Prototypes",
+        "definition": "JavaScript is prototype-based. Each object has a prototype from which it inherits properties and methods."
+    },
+    {
+        "name": "Closures",
+        "definition": "Closures allow a function to access and manipulate variables that are external to that function, but were in its lexical scope at the time of creation."
+    },
+    {
+        "name": "Promises",
+        "definition": "Promises represent a value that might be available now, or in the future, or never. They provide a more flexible way to handle asynchronous operations compared to callbacks."
+    },
+    {
+        "name": "Async/Await",
+        "definition": "Introduced in ES2017 (ES8), async/await provides a cleaner way to work with asynchronous operations and promises, making asynchronous code look and behave more like synchronous code."
+    },
+    {
+        "name": "Destructuring",
+        "definition": "Destructuring allows for extracting multiple properties from an object or items from an array simultaneously and assigning them to variables."
+    }
+]
