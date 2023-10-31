@@ -12,6 +12,6 @@ export class Cat {
   @Column()
   age: number;
 
-  @ManyToOne(() => User, (user) => user.cats, { eager: false })
+  @ManyToOne(() => User, (user) => user.cats)
   user: User;
 }

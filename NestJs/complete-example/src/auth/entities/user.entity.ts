@@ -28,9 +28,9 @@ export class User {
   @Column()
   lastName: string;
 
-  @OneToMany(() => Cat, (cat) => cat.user, { eager: true })
+  @OneToMany(() => Cat, (cat) => cat.user)
   cats: Cat[];
 
-  @OneToMany(() => Message, (message) => message.user, { eager: true })
+  @OneToMany(() => Message, (message) => message.user)
   messages: Message[];
 }
