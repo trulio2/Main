@@ -37,7 +37,7 @@ export class CatsRepository {
       });
     }
 
-    if (age && !isNaN(Number(age))) {
+    if (!isNaN(Number(age))) {
       query.andWhere('cat.age = :age', { age: Number(age) });
     }
 
