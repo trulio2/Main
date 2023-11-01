@@ -58,6 +58,11 @@ describe('CatsService', () => {
         mockCat,
       ]);
     });
+    it('should find all cats without filter', async () => {
+      catsRepository.findAll.mockResolvedValue([mockCat]);
+
+      expect(await service.findAll(null, mockUser)).toEqual([mockCat]);
+    });
   });
 
   describe('findOne', () => {

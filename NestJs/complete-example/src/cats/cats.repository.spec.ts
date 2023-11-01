@@ -10,7 +10,7 @@ describe('CatsRepository', () => {
   let repository: CatsRepository;
   let mockTypeOrmRepository: Repository<Cat>;
   let mockUser = { username: 'Mock User' } as User;
-  let mockCat = { name: 'Mock Cat' } as Cat;
+  let mockCat = { name: 'Mock Cat', age: 1 } as Cat;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -62,7 +62,10 @@ describe('CatsRepository', () => {
         getMany: jest.fn().mockResolvedValue([mockCat, mockCat]),
       } as any);
 
-      const result = await repository.findAll({} as GetCatsFilterDto, mockUser);
+      const result = await repository.findAll(
+        mockCat as GetCatsFilterDto,
+        mockUser,
+      );
 
       expect(result).toEqual([mockCat, mockCat]);
     });
