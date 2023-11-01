@@ -12,7 +12,7 @@ import { CreateUserDto, SignInDto } from './dtos';
 
 jest.mock('./auth.repository');
 
-describe('CatsService', () => {
+describe('AuthService', () => {
   let service: AuthService;
   let authRepository: jest.Mocked<AuthRepository>;
   let jwtService: jest.Mocked<JwtService>;

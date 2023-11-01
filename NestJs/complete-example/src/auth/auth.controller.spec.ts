@@ -6,7 +6,7 @@ import { UnauthorizedException } from '@nestjs/common';
 
 jest.mock('./auth.service');
 
-describe('CatsResolver', () => {
+describe('AuthController', () => {
   let controller: AuthController;
   let authService: jest.Mocked<AuthService>;
   let token = { accessToken: 'token' };
