@@ -3,12 +3,9 @@ import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from './auth/auth.module';
-import { CatsModule } from './cats/cats.module';
 import { configValidationSchema } from './config.schema';
 import { dataSourceOptions } from './db/ormconfig';
-import { UsersModule } from './users/users.module';
-import { StreamsModule } from './streams/streams.module';
+import { AuthModule, CatsModule, StreamsModule, UsersModule } from './modules';
 
 @Module({
   imports: [

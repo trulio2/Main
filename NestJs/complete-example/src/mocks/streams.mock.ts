@@ -1,5 +1,5 @@
-import { CreateMessageDto, StreamMessageDto } from '../streams/dtos';
-import { Message } from '../streams/entities';
+import { CreateMessageDto, StreamMessageDto } from '../modules/streams/dtos';
+import { Message } from '../modules/streams/entities';
 
 export const mockMessage = {} as Message;
 export const mockCreateMessageDto = {} as CreateMessageDto;

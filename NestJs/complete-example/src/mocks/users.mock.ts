@@ -1,5 +1,5 @@
-import { User } from '../auth/entities';
-import { CreateUserDto, SignInDto } from '../auth/dtos';
+import { User } from '../modules/auth/entities';
+import { CreateUserDto, SignInDto } from '../modules/auth/dtos';
 
 export const mockUser = { username: 'Mock User' } as User;
 export const mockToken = { accessToken: 'token' };
