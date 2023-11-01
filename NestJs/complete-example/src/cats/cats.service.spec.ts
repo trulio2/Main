@@ -1,10 +1,10 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { CatsService } from './cats.service';
-import { CatsRepository } from './cats.repository';
 import { NotFoundException } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
 import { User } from '../auth/entities';
-import { Cat } from './entities';
+import { CatsRepository } from './cats.repository';
+import { CatsService } from './cats.service';
 import { CreateCatDto, GetCatsFilterDto, UpdateCatDto } from './dtos';
+import { Cat } from './entities';
 
 describe('CatsService', () => {
   let service: CatsService;
@@ -78,6 +78,12 @@ describe('CatsService', () => {
       catsRepository.remove.mockResolvedValue(mockCat);
       expect(await service.remove('1', mockUser)).toEqual(mockCat);
     });
+    it('should throw an error if cat is not found', async () => {
+      catsRepository.findOne.mockResolvedValue(null);
+      await expect(service.remove('1', mockUser)).rejects.toThrow(
+        NotFoundException,
+      );
+    });
   });
 
   describe('update', () => {
@@ -87,6 +93,12 @@ describe('CatsService', () => {
       expect(await service.update('1', {} as UpdateCatDto, mockUser)).toEqual(
         mockCat,
       );
+    });
+    it('should throw an error if cat is not found', async () => {
+      catsRepository.findOne.mockResolvedValue(null);
+      await expect(
+        service.update('1', {} as UpdateCatDto, mockUser),
+      ).rejects.toThrow(NotFoundException);
     });
   });
 });
