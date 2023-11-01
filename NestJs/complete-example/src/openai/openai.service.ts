@@ -6,7 +6,7 @@ import { Message } from './message.type';
 
 @Injectable()
 export class OpenaiService {
-  private readonly openai = new OpenAI();
+  constructor(private readonly openai: OpenAI) {}
 
   async chat(messages: Message[], temperature: number): Promise<string> {
     const answer = await this.openai.chat.completions.create({
