@@ -1,10 +1,10 @@
 import { Test, TestingModule } from '@nestjs/testing';
+import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../auth/entities';
+import { CatsRepository } from './cats.repository';
 import { CreateCatDto, GetCatsFilterDto } from './dtos';
 import { Cat } from './entities';
-import { CatsRepository } from './cats.repository';
-import { getRepositoryToken } from '@nestjs/typeorm';
 
 describe('CatsRepository', () => {
   let repository: CatsRepository;

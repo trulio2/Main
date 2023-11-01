@@ -6,6 +6,8 @@ import { CatsService } from './cats.service';
 import { CreateCatDto, GetCatsFilterDto, UpdateCatDto } from './dtos';
 import { Cat } from './entities';
 
+jest.mock('./cats.repository');
+
 describe('CatsService', () => {
   let service: CatsService;
   let catsRepository: jest.Mocked<CatsRepository>;
@@ -58,6 +60,7 @@ describe('CatsService', () => {
         mockCat,
       ]);
     });
+
     it('should find all cats without filter', async () => {
       catsRepository.findAll.mockResolvedValue([mockCat]);
 
@@ -88,6 +91,7 @@ describe('CatsService', () => {
 
       expect(await service.remove('uuid', mockUser)).toEqual(mockCat);
     });
+
     it('should throw an error if cat is not found', async () => {
       catsRepository.findOne.mockResolvedValue(null);
 
@@ -106,6 +110,7 @@ describe('CatsService', () => {
         await service.update('uuid', {} as UpdateCatDto, mockUser),
       ).toEqual(mockCat);
     });
+
     it('should throw an error if cat is not found', async () => {
       catsRepository.findOne.mockResolvedValue(null);
 

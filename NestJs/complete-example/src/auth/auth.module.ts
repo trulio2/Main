@@ -7,6 +7,7 @@ import { AuthController } from './auth.controller';
 import { AuthRepository } from './auth.repository';
 import { AuthService } from './auth.service';
 import { User } from './entities';
+import { HashService } from './hash.service';
 import { JwtStrategy } from './strategies';
 
 @Module({
@@ -27,7 +28,7 @@ import { JwtStrategy } from './strategies';
     }),
     TypeOrmModule.forFeature([User]),
   ],
-  providers: [AuthService, JwtStrategy, AuthRepository],
+  providers: [AuthRepository, AuthService, HashService, JwtStrategy],
   controllers: [AuthController],
   exports: [JwtStrategy, PassportModule],
 })
