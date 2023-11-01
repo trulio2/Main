@@ -1,16 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { User } from '../auth/entities';
+import {
+  mockCat,
+  mockCreateCatDto,
+  mockGetCatsFilterDto,
+  mockUser,
+} from '../mocks';
 import { CatsRepository } from './cats.repository';
-import { CreateCatDto, GetCatsFilterDto } from './dtos';
 import { Cat } from './entities';
 
 describe('CatsRepository', () => {
   let repository: CatsRepository;
   let mockTypeOrmRepository: Repository<Cat>;
-  let mockUser = { username: 'Mock User' } as User;
-  let mockCat = { name: 'Mock Cat', age: 1 } as Cat;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -48,7 +50,7 @@ describe('CatsRepository', () => {
       jest.spyOn(mockTypeOrmRepository, 'create').mockReturnValue(mockCat);
       jest.spyOn(mockTypeOrmRepository, 'save').mockResolvedValue(mockCat);
 
-      const result = await repository.create({} as CreateCatDto, mockUser);
+      const result = await repository.create(mockCreateCatDto, mockUser);
 
       expect(result).toEqual(mockCat);
     });
@@ -62,10 +64,7 @@ describe('CatsRepository', () => {
         getMany: jest.fn().mockResolvedValue([mockCat, mockCat]),
       } as any);
 
-      const result = await repository.findAll(
-        mockCat as GetCatsFilterDto,
-        mockUser,
-      );
+      const result = await repository.findAll(mockGetCatsFilterDto, mockUser);
 
       expect(result).toEqual([mockCat, mockCat]);
     });
@@ -95,7 +94,7 @@ describe('CatsRepository', () => {
     it('should update a cat', async () => {
       jest.spyOn(mockTypeOrmRepository, 'save').mockResolvedValue(mockCat);
 
-      const result = await repository.update(mockCat, {} as CreateCatDto);
+      const result = await repository.update(mockCat, mockCreateCatDto);
 
       expect(result).toEqual(mockCat);
     });

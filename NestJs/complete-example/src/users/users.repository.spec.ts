@@ -1,13 +1,13 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { mockUser } from '../mocks';
 import { User } from '../auth/entities';
 import { UsersRepository } from './users.repository';
 
 describe('UsersRepository', () => {
   let repository: UsersRepository;
   let mockTypeOrmRepository: Repository<User>;
-  let mockUser = { username: 'Mock User' } as User;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({

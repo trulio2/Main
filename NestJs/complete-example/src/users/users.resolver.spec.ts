@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { User } from '../auth/entities';
+import { mockUser } from '../mocks';
 import { UsersResolver } from './users.resolver';
 import { UsersService } from './users.service';
 
@@ -7,8 +7,7 @@ jest.mock('./users.service');
 
 describe('UsersResolver', () => {
   let resolver: UsersResolver;
-  let usersService: jest.Mocked<UsersService>;
-  let mockUser = { username: 'test' } as User;
+  let mockService: jest.Mocked<UsersService>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -24,7 +23,7 @@ describe('UsersResolver', () => {
     }).compile();
 
     resolver = module.get<UsersResolver>(UsersResolver);
-    usersService = module.get(UsersService);
+    mockService = module.get(UsersService);
   });
 
   it('should be defined', () => {
@@ -33,7 +32,7 @@ describe('UsersResolver', () => {
 
   describe('findAllUsers', () => {
     it('should return an array of users', async () => {
-      usersService.findAll.mockResolvedValue([mockUser, mockUser]);
+      mockService.findAll.mockResolvedValue([mockUser, mockUser]);
 
       const result = await resolver.findAllUsers(mockUser);
 

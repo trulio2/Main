@@ -5,18 +5,16 @@ import {
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
+import { mockCreateUserDto, mockSignInDto, mockUser } from '../mocks';
 import { AuthRepository } from './auth.repository';
 import { AuthService } from './auth.service';
-import { User } from './entities';
-import { CreateUserDto, SignInDto } from './dtos';
 
 jest.mock('./auth.repository');
 
 describe('AuthService', () => {
   let service: AuthService;
-  let authRepository: jest.Mocked<AuthRepository>;
-  let jwtService: jest.Mocked<JwtService>;
-  let mockUser = { username: 'Mock User' } as User;
+  let mockRepository: jest.Mocked<AuthRepository>;
+  let mockJwtService: jest.Mocked<JwtService>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -39,8 +37,8 @@ describe('AuthService', () => {
     }).compile();
 
     service = module.get<AuthService>(AuthService);
-    jwtService = module.get(JwtService);
-    authRepository = module.get(AuthRepository);
+    mockRepository = module.get(AuthRepository);
+    mockJwtService = module.get(JwtService);
   });
 
   it('should be defined', () => {
@@ -48,23 +46,23 @@ describe('AuthService', () => {
   });
 
   it('should be defined', () => {
-    expect(jwtService).toBeDefined();
+    expect(mockJwtService).toBeDefined();
   });
 
   describe('signIn', () => {
     it('should return a user', async () => {
-      authRepository.signIn.mockResolvedValue(mockUser);
-      jwtService.sign.mockReturnValue('token');
+      mockRepository.signIn.mockResolvedValue(mockUser);
+      mockJwtService.sign.mockReturnValue('token');
 
-      const result = await service.signIn({} as SignInDto);
+      const result = await service.signIn(mockSignInDto);
 
       expect(result).toEqual({ accessToken: 'token' });
     });
 
     it('should throw an error', async () => {
-      authRepository.signIn.mockResolvedValue(null);
+      mockRepository.signIn.mockResolvedValue(null);
 
-      expect(service.signIn({} as SignInDto)).rejects.toThrow(
+      expect(service.signIn(mockSignInDto)).rejects.toThrow(
         UnauthorizedException,
       );
     });
@@ -72,26 +70,26 @@ describe('AuthService', () => {
 
   describe('signUp', () => {
     it('should return a user', async () => {
-      authRepository.signUp.mockResolvedValue(mockUser);
-      jwtService.sign.mockReturnValue('token');
+      mockRepository.signUp.mockResolvedValue(mockUser);
+      mockJwtService.sign.mockReturnValue('token');
 
-      const result = await service.signUp({} as CreateUserDto);
+      const result = await service.signUp(mockCreateUserDto);
 
       expect(result).toEqual({ accessToken: 'token' });
     });
 
     it('should throw an error', async () => {
-      authRepository.signUp.mockRejectedValue({ code: '23505' });
+      mockRepository.signUp.mockRejectedValue({ code: '23505' });
 
-      expect(service.signUp({} as CreateUserDto)).rejects.toThrow(
+      expect(service.signUp(mockCreateUserDto)).rejects.toThrow(
         ConflictException,
       );
     });
 
     it('should throw an error', async () => {
-      authRepository.signUp.mockRejectedValue({ code: '12345' });
+      mockRepository.signUp.mockRejectedValue({ code: '12345' });
 
-      expect(service.signUp({} as CreateUserDto)).rejects.toThrow(
+      expect(service.signUp(mockCreateUserDto)).rejects.toThrow(
         InternalServerErrorException,
       );
     });

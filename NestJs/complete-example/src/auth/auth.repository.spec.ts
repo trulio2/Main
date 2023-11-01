@@ -2,15 +2,16 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from '../auth/entities';
+import { mockCreateUserDto, mockSignInDto, mockUser } from '../mocks';
 import { AuthRepository } from './auth.repository';
-import { CreateUserDto, SignInDto } from './dtos';
 import { HashService } from './hash.service';
+
+jest.mock('./hash.service');
 
 describe('AuthRepository', () => {
   let repository: AuthRepository;
-  let hashService: jest.Mocked<HashService>;
+  let mockHashService: jest.Mocked<HashService>;
   let mockTypeOrmRepository: Repository<User>;
-  let mockUser = { username: 'Mock User' } as User;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -35,7 +36,7 @@ describe('AuthRepository', () => {
     }).compile();
 
     repository = module.get<AuthRepository>(AuthRepository);
-    hashService = module.get(HashService);
+    mockHashService = module.get(HashService);
     mockTypeOrmRepository = module.get<Repository<User>>(
       getRepositoryToken(User),
     );
@@ -54,17 +55,15 @@ describe('AuthRepository', () => {
       jest
         .spyOn(mockTypeOrmRepository, 'findOneBy')
         .mockResolvedValue(mockUser);
-      hashService.compare.mockResolvedValue(true);
+      mockHashService.compare.mockResolvedValue(true);
 
-      const result = await repository.signIn({} as SignInDto);
+      const result = await repository.signIn(mockSignInDto);
 
       expect(result).toEqual(mockUser);
     });
 
     it('should return null for user not found', async () => {
-      jest.spyOn(mockTypeOrmRepository, 'findOneBy').mockResolvedValue(null);
-
-      const result = await repository.signIn({} as SignInDto);
+      const result = await repository.signIn(mockSignInDto);
 
       expect(result).toEqual(null);
     });
@@ -73,9 +72,8 @@ describe('AuthRepository', () => {
       jest
         .spyOn(mockTypeOrmRepository, 'findOneBy')
         .mockResolvedValue(mockUser);
-      hashService.compare.mockResolvedValue(false);
 
-      const result = await repository.signIn({} as SignInDto);
+      const result = await repository.signIn(mockSignInDto);
 
       expect(result).toEqual(null);
     });
@@ -85,7 +83,7 @@ describe('AuthRepository', () => {
     it('should return a user', async () => {
       jest.spyOn(mockTypeOrmRepository, 'save').mockResolvedValue(mockUser);
 
-      const result = await repository.signUp({} as CreateUserDto);
+      const result = await repository.signUp(mockCreateUserDto);
 
       expect(result).toEqual(mockUser);
     });

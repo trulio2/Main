@@ -1,15 +1,14 @@
+import { UnauthorizedException } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
+import { mockCreateUserDto, mockSignInDto, mockToken } from '../mocks';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
-import { CreateUserDto, SignInDto } from './dtos';
-import { UnauthorizedException } from '@nestjs/common';
 
 jest.mock('./auth.service');
 
 describe('AuthController', () => {
   let controller: AuthController;
-  let authService: jest.Mocked<AuthService>;
-  let token = { accessToken: 'token' };
+  let mockService: jest.Mocked<AuthService>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -26,7 +25,7 @@ describe('AuthController', () => {
     }).compile();
 
     controller = module.get<AuthController>(AuthController);
-    authService = module.get(AuthService);
+    mockService = module.get(AuthService);
   });
 
   it('should be defined', () => {
@@ -35,17 +34,17 @@ describe('AuthController', () => {
 
   describe('signIn', () => {
     it('should return the access token', async () => {
-      authService.signIn.mockResolvedValue(token);
+      mockService.signIn.mockResolvedValue(mockToken);
 
-      const result = await controller.signIn({} as SignInDto);
+      const result = await controller.signIn(mockSignInDto);
 
-      expect(result).toEqual(token);
+      expect(result).toEqual(mockToken);
     });
 
     it('should throw an UnauthorizedException', async () => {
-      authService.signIn.mockRejectedValue(new UnauthorizedException());
+      mockService.signIn.mockRejectedValue(new UnauthorizedException());
 
-      await expect(controller.signIn({} as SignInDto)).rejects.toThrow(
+      await expect(controller.signIn(mockSignInDto)).rejects.toThrow(
         UnauthorizedException,
       );
     });
@@ -53,19 +52,17 @@ describe('AuthController', () => {
 
   describe('signUp', () => {
     it('should return the access token', async () => {
-      authService.signUp.mockResolvedValue(token);
+      mockService.signUp.mockResolvedValue(mockToken);
 
-      const result = await controller.signUp({} as CreateUserDto);
+      const result = await controller.signUp(mockCreateUserDto);
 
-      expect(result).toEqual(token);
+      expect(result).toEqual(mockToken);
     });
 
     it('should throw an error', async () => {
-      authService.signUp.mockRejectedValue(new Error());
+      mockService.signUp.mockRejectedValue(new Error());
 
-      await expect(controller.signUp({} as CreateUserDto)).rejects.toThrow(
-        Error,
-      );
+      await expect(controller.signUp(mockCreateUserDto)).rejects.toThrow(Error);
     });
   });
 });

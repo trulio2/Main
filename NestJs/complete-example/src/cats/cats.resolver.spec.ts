@@ -1,17 +1,18 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { User } from '../auth/entities';
+import {
+  mockCat,
+  mockCreateCatDto,
+  mockGetCatsFilterDto,
+  mockUser,
+} from '../mocks';
 import { CatsResolver } from './cats.resolver';
 import { CatsService } from './cats.service';
-import { CreateCatDto, GetCatsFilterDto } from './dtos';
-import { Cat } from './entities';
 
 jest.mock('./cats.service');
 
 describe('CatsResolver', () => {
   let resolver: CatsResolver;
-  let catsService: jest.Mocked<CatsService>;
-  let mockUser = { username: 'test' } as User;
-  let mockCat: Cat;
+  let mockService: jest.Mocked<CatsService>;
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
@@ -31,7 +32,7 @@ describe('CatsResolver', () => {
     }).compile();
 
     resolver = module.get<CatsResolver>(CatsResolver);
-    catsService = module.get(CatsService);
+    mockService = module.get(CatsService);
   });
 
   it('should be defined', () => {
@@ -40,47 +41,51 @@ describe('CatsResolver', () => {
 
   describe('create', () => {
     it('should create a cat', async () => {
-      catsService.create.mockResolvedValue(mockCat);
+      mockService.create.mockResolvedValue(mockCat);
 
-      expect(await resolver.create({} as CreateCatDto, mockUser)).toEqual(
-        mockCat,
-      );
+      const result = await resolver.create(mockCreateCatDto, mockUser);
+
+      expect(result).toEqual(mockCat);
     });
   });
 
   describe('findAll', () => {
     it('should find all cats', async () => {
-      catsService.findAll.mockResolvedValue([mockCat]);
+      mockService.findAll.mockResolvedValue([mockCat, mockCat]);
 
-      expect(await resolver.findAll({} as GetCatsFilterDto, mockUser)).toEqual([
-        mockCat,
-      ]);
+      const result = await resolver.findAll(mockGetCatsFilterDto, mockUser);
+
+      expect(result).toEqual([mockCat, mockCat]);
     });
   });
 
   describe('findOne', () => {
     it('should find one cat by id', async () => {
-      catsService.findOne.mockResolvedValue(mockCat);
+      mockService.findOne.mockResolvedValue(mockCat);
 
-      expect(await resolver.findOne('uuid', mockUser)).toEqual(mockCat);
+      const result = await resolver.findOne('uuid', mockUser);
+
+      expect(result).toEqual(mockCat);
     });
   });
 
   describe('remove', () => {
     it('should remove a cat', async () => {
-      catsService.remove.mockResolvedValue(mockCat);
+      mockService.remove.mockResolvedValue(mockCat);
 
-      expect(await resolver.remove('uuid', mockUser)).toEqual(mockCat);
+      const result = await resolver.remove('uuid', mockUser);
+
+      expect(result).toEqual(mockCat);
     });
   });
 
   describe('update', () => {
     it('should update a cat', async () => {
-      catsService.update.mockResolvedValue(mockCat);
+      mockService.update.mockResolvedValue(mockCat);
 
-      expect(
-        await resolver.update('uuid', {} as CreateCatDto, mockUser),
-      ).toEqual(mockCat);
+      const result = await resolver.update('uuid', mockCreateCatDto, mockUser);
+
+      expect(result).toEqual(mockCat);
     });
   });
 });

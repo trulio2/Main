@@ -29,6 +29,13 @@ import { StreamsService } from './streams.service';
 export class StreamsGateway {
   constructor(private readonly streamsService: StreamsService) {}
 
+  @SubscribeMessage('findAll')
+  @UseFilters(WsAndHttpExceptionFilter)
+  async findAll(@GetUserWs() user: User): Promise<Message[]> {
+    const messages = await this.streamsService.findAll(user);
+    return messages;
+  }
+
   @SubscribeMessage('stream')
   @UseFilters(WsAndHttpExceptionFilter)
   handleStream(
@@ -37,12 +44,5 @@ export class StreamsGateway {
     @GetUserWs() user: User,
   ): void {
     this.streamsService.stream(streamMessageDto, client, user);
-  }
-
-  @SubscribeMessage('findAll')
-  @UseFilters(WsAndHttpExceptionFilter)
-  async findAll(@GetUserWs() user: User): Promise<Message[]> {
-    const messages = await this.streamsService.findAll(user);
-    return messages;
   }
 }

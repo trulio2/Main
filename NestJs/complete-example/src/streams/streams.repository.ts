@@ -24,7 +24,9 @@ export class StreamsRepository {
   async findAll(user: User): Promise<Message[]> {
     const query = this.repository.createQueryBuilder('message');
 
-    query.where({ user }).orderBy('message.createdAt', 'ASC');
+    query.where({ user });
+
+    query.orderBy('message.createdAt', 'ASC');
 
     const messages = await query.getMany();
 

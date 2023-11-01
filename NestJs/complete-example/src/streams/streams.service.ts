@@ -10,7 +10,7 @@ import { StreamsRepository } from './streams.repository';
 @Injectable()
 export class StreamsService {
   constructor(
-    private readonly openai: OpenaiService,
+    private readonly openaiService: OpenaiService,
     private readonly streamsRepository: StreamsRepository,
   ) {}
 
@@ -34,7 +34,7 @@ export class StreamsService {
       userMessageDto,
     ];
 
-    const chatCompletion = await this.openai.stream(messages, 0.5);
+    const chatCompletion = await this.openaiService.stream(messages, 0.5);
 
     let answer = '';
     for await (const message of chatCompletion) {
