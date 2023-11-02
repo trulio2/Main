@@ -21,7 +21,6 @@ import {
       envFilePath: ['.env'],
       validationSchema: configValidationSchema,
     }),
-
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
       autoSchemaFile: true,
