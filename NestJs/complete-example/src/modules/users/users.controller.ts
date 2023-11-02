@@ -9,8 +9,8 @@ import { UsersService } from './users.service';
 
 @Controller('users')
 @UseGuards(AuthGuard())
-@Serialize(UserDto)
 @Role('admin')
+@Serialize(UserDto)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
   private logger = new Logger('UsersController');

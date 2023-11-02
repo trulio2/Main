@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import OpenAI from 'openai';
 import { APIPromise } from 'openai/core';
 import { Stream } from 'openai/streaming';
-import { Message } from './message.type';
+import { Message } from './types';
 
 @Injectable()
 export class OpenaiService {
