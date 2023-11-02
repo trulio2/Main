@@ -1,5 +1,5 @@
 import { Expose, Type } from 'class-transformer';
-import { CatDto } from './cat.dto';
+import { CatDto } from './';
 
 export class UserDto {
   @Expose()
