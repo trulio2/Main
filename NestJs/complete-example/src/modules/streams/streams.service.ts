@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Socket } from 'socket.io';
-import { Role } from '../../types';
+import { OpenAiInputMessage, Role } from '../../types';
 import { User } from '../auth/entities';
 import { OpenaiService } from '../openai';
 import { CreateMessageDto, StreamMessageDto } from './dtos';
@@ -29,10 +29,10 @@ export class StreamsService {
     const messages = [
       {
         role: Role.SYSTEM,
-        content: 'You are a chatbot expert about cats.',
+        content: 'You are an expert about cats.',
       },
       userMessageDto,
-    ];
+    ] as OpenAiInputMessage[];
 
     const chatCompletion = await this.openaiService.stream(messages, 0.5);
 
