@@ -1,4 +1,4 @@
-import { Role } from '.';
+import { Role } from './';
 
 export interface OpenAiInputMessage {
   content: string;
