@@ -7,7 +7,7 @@ import { AuthController } from './auth.controller';
 import { AuthRepository } from './auth.repository';
 import { AuthService } from './auth.service';
 import { User } from './entities';
-import { HashService } from './hash.service';
+import { HashService } from './hash';
 import { JwtStrategy } from './strategies';
 
 @Module({

@@ -1,12 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
-import {
-  IsString,
-  IsOptional,
-  IsNumber,
-  MinLength,
-  Min,
-  Max,
-} from 'class-validator';
+import { IsString, IsOptional, IsNumber, Min, Max } from 'class-validator';
 
 @InputType()
 export class GetCatsFilterDto {

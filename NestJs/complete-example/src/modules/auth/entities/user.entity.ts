@@ -1,7 +1,7 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { UserRole } from '../../../types';
 import { Cat } from '../../cats/entities';
 import { Message } from '../../streams/entities';
-import { UserRole } from '../../../types';
 
 @Entity()
 export class User {

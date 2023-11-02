@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { Socket } from 'socket.io';
 import { mockMessage, mockStreamMessage, mockUser } from '../../mocks';
-import { OpenaiService } from '../openai/openai.service';
+import { OpenaiService } from '../openai';
 import { StreamsRepository } from './streams.repository';
 import { StreamsService } from './streams.service';
 

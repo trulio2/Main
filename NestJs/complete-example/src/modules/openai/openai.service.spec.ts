@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import OpenAI from 'openai';
 import { mockChatResponse, mockChatCompletionsResponse } from '../../mocks';
-import { OpenaiService } from './openai.service';
+import { OpenaiService } from './';
 
 describe('OpenaiService', () => {
   let service: OpenaiService;

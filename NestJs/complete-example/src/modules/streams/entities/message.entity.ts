@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User } from '../../auth/entities';
 import { Role } from '../../../types';
+import { User } from '../../auth/entities';
 
 @Entity()
 export class Message {
