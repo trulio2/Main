@@ -6,7 +6,7 @@ import { Socket } from 'socket.io';
 export class WsAndHttpExceptionFilter {
   public catch(exception: HttpException, host: ArgumentsHost) {
     const ctx = host.switchToWs();
-    const client = ctx.getClient() as Socket;
+    const client: Socket = ctx.getClient();
     try {
       const response = exception.getResponse();
       client.emit(

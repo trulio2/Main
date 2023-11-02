@@ -26,13 +26,13 @@ export class StreamsService {
 
     await this.streamsRepository.create(userMessageDto, user);
 
-    const messages = [
+    const messages: OpenAiInputMessage[] = [
       {
         role: Role.SYSTEM,
         content: 'You are an expert about cats.',
       },
       userMessageDto,
-    ] as OpenAiInputMessage[];
+    ];
 
     const chatCompletion = await this.openaiService.stream(messages, 0.5);
 
