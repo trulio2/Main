@@ -11,9 +11,9 @@ import {
   WebSocketGateway,
 } from '@nestjs/websockets';
 import { Socket } from 'socket.io';
-import { User } from '../auth/entities';
 import { GetUserWs } from '../../decorators';
 import { WsGuard } from '../../guards';
+import { User } from '../auth/entities';
 import { StreamMessageDto } from './dtos';
 import { Message } from './entities';
 import { WsAndHttpExceptionFilter } from './streams.filter';

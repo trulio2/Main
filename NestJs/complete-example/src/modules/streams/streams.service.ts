@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Socket } from 'socket.io';
-import { User } from '../auth/entities';
-import { OpenaiService } from '../openai/openai.service';
 import { Role } from '../../types';
+import { User } from '../auth/entities';
+import { OpenaiService } from '../openai';
 import { CreateMessageDto, StreamMessageDto } from './dtos';
 import { Message } from './entities';
 import { StreamsRepository } from './streams.repository';
