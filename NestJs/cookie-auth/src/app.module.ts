@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
-import { AuthModule, CatsModule } from './modules';
 import { configValidationSchema } from './config.schema';
+import { AuthModule, CatsModule } from './modules';
 @Module({
   imports: [
     AuthModule,

@@ -7,11 +7,11 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signin')
-  async signin(
+  signin(
     @Body('username') userName: string,
     @Session() session: SessionType,
-  ): Promise<User> {
-    const user = await this.authService.signin(userName);
+  ): User {
+    const user = this.authService.signin(userName);
 
     session.userId = user.userId;
     session.userName = user.userName;
@@ -20,11 +20,11 @@ export class AuthController {
   }
 
   @Post('signup')
-  async signup(
+  signup(
     @Body('username') userName: string,
     @Session() session: SessionType,
-  ): Promise<User> {
-    const user = await this.authService.signup(userName);
+  ): User {
+    const user = this.authService.signup(userName);
 
     session.userId = user.userId;
     session.userName = user.userName;

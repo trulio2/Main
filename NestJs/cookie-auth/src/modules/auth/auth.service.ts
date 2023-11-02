@@ -5,7 +5,7 @@ import { User } from './types';
 export class AuthService {
   private users: User[] = [];
 
-  async findOne(userId: number) {
+  findOne(userId: number) {
     return this.users.find((user) => user.userId === userId);
   }
 
@@ -19,7 +19,7 @@ export class AuthService {
     return user;
   }
 
-  async signup(name: string) {
+  signup(name: string): User {
     const user = {
       userId: this.users.length + 1,
       userName: name,
