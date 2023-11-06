@@ -20,13 +20,14 @@ describe('CatsResolver', () => {
         CatsResolver,
         {
           provide: CatsService,
-          useFactory: () => ({
-            create: jest.fn(),
-            findAll: jest.fn(),
-            findOne: jest.fn(),
-            remove: jest.fn(),
-            update: jest.fn(),
-          }),
+          useFactory: () =>
+            ({
+              create: jest.fn(),
+              findAll: jest.fn(),
+              findOne: jest.fn(),
+              remove: jest.fn(),
+              update: jest.fn(),
+            }) as Partial<CatsService>,
         },
       ],
     }).compile();

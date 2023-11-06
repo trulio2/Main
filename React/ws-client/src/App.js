@@ -21,11 +21,11 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      const socket = io(process.env.REACT_APP_WS, {
+      const socket = io(process.env.REACT_APP_WS + '/professor', {
         query: { token: user.token },
       });
 
-      socket.emit('findAll', {}, (data) => {
+      socket.emit('messages', {}, (data) => {
         setMessages(data);
         socket.disconnect();
       });
@@ -76,7 +76,7 @@ function App() {
 
     setMessages((messages) => [...messages, newMessage]);
 
-    const socket = io(process.env.REACT_APP_WS, {
+    const socket = io(process.env.REACT_APP_WS + '/professor', {
       query: { token: user.token },
     });
 
