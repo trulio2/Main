@@ -35,12 +35,19 @@ services:
       CONFLUENT_SUPPORT_CUSTOMER_ID: 'anonymous'
 
   kafka-db:
-    image: postgres
-    hostname: kafka-db
+    image: postgres:latest
+    hostname: kafka_db
     container_name: kafka-db
-    ports:
-      - 5432:5432
+    restart: always
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: kafka-db
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./scripts:/docker-entrypoint-initdb.d
+      - postgres_data_mono:/var/lib/postgresql/data
+
+volumes:
+  postgres_data_mono:
