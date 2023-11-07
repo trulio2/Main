@@ -25,7 +25,7 @@
       "entryFile": "main",
       "sourceRoot": "apps/auth/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/auth/tsconfig.app.json"
+        "tsConfigPath": "apps/auth/tsconfig.json"
       }
     },
     "cats": {
@@ -34,7 +34,7 @@
       "entryFile": "main",
       "sourceRoot": "apps/cats/src",
       "compilerOptions": {
-        "tsConfigPath": "apps/cats/tsconfig.app.json"
+        "tsConfigPath": "apps/cats/tsconfig.json"
       }
     }
   }

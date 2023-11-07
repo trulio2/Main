@@ -8,10 +8,9 @@ export const dataSourceOptions: DataSourceOptions = {
   port: Number(process.env.DB_PORT),
   username: process.env.DB_USERNAME,
   password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE_CATS,
+  database: process.env.DB_DATABASE,
   entities: [Cat],
-  migrations: ['dist/db/migrations/*.js'],
-  synchronize: true,
+  migrations: ['../../dist/apps/cats/db/migrations/*.js'],
 };
 
 const dataSource = new DataSource(dataSourceOptions);
