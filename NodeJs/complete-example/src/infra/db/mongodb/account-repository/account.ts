@@ -11,6 +11,10 @@ export class AccountMongoRepository implements AddAccountRepository {
 
     const account = await accountCollection.findOne({ _id: result.insertedId })
 
-    return account as unknown as AccountModel
+    const { _id, ...accountWithoutId } = account
+
+    return Object.assign({}, accountWithoutId, {
+      id: _id,
+    }) as unknown as AccountModel
   }
 }
