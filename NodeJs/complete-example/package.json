@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --passWithNoTests"
+    "test": "jest --silent --noStackTrace --passWithNoTests --maxWorkers=1",
+    "test:unit": "yarn test -c jest-unit-config.js",
+    "test:integration": "yarn test -c jest-integration-config.js",
+    "test:cov": "yarn test --coverage"
   },
   "keywords": [],
   "author": "",
