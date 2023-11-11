@@ -21,19 +21,19 @@ function App() {
 
   useEffect(() => {
     if (user) {
-      const socket = io(process.env.REACT_APP_WS + '/professor', {
-        query: { token: user.token },
-      });
-
-      socket.emit('messages', {}, (data) => {
-        setMessages(data);
-        socket.disconnect();
-      });
-
-      socket.on('error', () => {
-        localStorage.removeItem('user');
-        setUser(null);
-      });
+      fetch('http://localhost:3000/professor/messages', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: 'Bearer ' + user.token,
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.length > 0) {
+            setMessages(data);
+          }
+        });
     }
   }, [user]);
 
@@ -91,12 +91,12 @@ function App() {
       const parsedData = JSON.parse(data);
       if (parsedData.message) {
         const newMessage = {
-          content: parsedData.message,
+          content: parsedData.message.content,
           role: 'assistant',
         };
         setMessages((messages) => {
           if (messages[messages.length - 1].role === 'assistant') {
-            messages[messages.length - 1].content = parsedData.message;
+            messages[messages.length - 1].content = parsedData.message.content;
             return [...messages];
           } else {
             return [...messages, newMessage];
