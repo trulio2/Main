@@ -220,3 +220,74 @@ Use Abstract Classes when
 - You need to provide a common base class with shared code.
 - You need to enforce certain class shapes including constructor signatures.
 - You want to maintain some internal state or have a more rigid structure.
+
+## Array Methods
+
+### map()
+
+The .map() method creates a new array populated with the results of calling a provided function on every element in the calling array.
+
+```typescript
+let newArray = arr.map(callback(currentValue[, index[, array]])[, thisArg]);
+```
+
+callback: Function that produces an element of the new Array, taking three arguments:
+
+- currentValue: The current element being processed in the array.
+- index (optional): The index of the current element being processed in the array.
+- array (optional): The array map was called upon.
+
+thisArg (optional): Value to use as this when executing callback.
+
+```typescript
+const numbers = [1, 2, 3, 4];
+const doubled = numbers.map(num => num * 2);
+console.log(doubled); // Output: [2, 4, 6, 8]
+```
+
+### forEach()
+
+The .forEach() method executes a provided function once for each array element.
+
+```typescript
+arr.forEach(callback(currentValue [, index [, array]])[, thisArg]);
+```
+
+callback: Function to execute on each element, taking three arguments:
+
+- currentValue: The current element being processed in the array.
+- index (optional): The index of the current element being processed in the array.
+- array (optional): The array forEach was called upon.
+
+thisArg (optional): Value to use as this when executing callback.
+
+```typescript
+const numbers = [1, 2, 3, 4];
+numbers.forEach(num => console.log(num * 2));
+// Output: 2, 4, 6, 8 (each number logged individually)
+```
+
+### reduce()
+
+The .reduce() method executes a reducer function on each element of the array, resulting in a single output value.
+
+```typescript
+arr.reduce(callback(accumulator, currentValue[, index[, array]])[, initialValue]);
+```
+
+callback: A function to execute on each element in the array (except for the first, if no initialValue is supplied), taking four arguments:
+
+- accumulator: The accumulator accumulates the callback's return values.
+- currentValue: The current element being processed in the array.
+- index (optional): The index of the current element being processed in the array.
+- array (optional): The array reduce was called upon.
+
+initialValue (optional): A value to use as the first argument to the first call of the callback. If no initial value is supplied, the first element in the array will be used.
+
+```typescript
+const numbers = [1, 2, 3, 4];
+const sum = numbers.reduce((accumulator, currentValue) => accumulator + currentValue, 0);
+console.log(sum); // Output: 10
+```
+
+In this example, the reduce method is used to calculate the sum of all numbers in the array, starting from an initial accumulator value of 0.
