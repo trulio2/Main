@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
-import './App.css';
+import { useEffect, useState } from 'react'
+import { io } from 'socket.io-client'
+import './App.css'
 
 function App() {
-  const [message, setMessage] = useState('');
-  const [streaming, setStreaming] = useState(false);
-  const [messages, setMessages] = useState([]);
-  const [user, setUser] = useState(null);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState([]);
+  const [message, setMessage] = useState('')
+  const [streaming, setStreaming] = useState(false)
+  const [messages, setMessages] = useState([])
+  const [user, setUser] = useState(null)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState([])
 
   useEffect(() => {
-    const user = localStorage.getItem('user');
+    const user = localStorage.getItem('user')
     if (user) {
-      const currentUser = JSON.parse(user);
-      setUser(currentUser);
+      const currentUser = JSON.parse(user)
+      setUser(currentUser)
     }
-  }, []);
+  }, [])
 
   useEffect(() => {
     if (user) {
@@ -31,15 +31,16 @@ function App() {
         .then((res) => res.json())
         .then((data) => {
           if (data.length > 0) {
-            setMessages(data);
+            setMessages(data)
           }
-        });
+        })
+        .catch(() => {})
     }
-  }, [user]);
+  }, [user])
 
   const handleLogin = async (e) => {
-    e.preventDefault();
-    if (username === '' || password === '') return;
+    e.preventDefault()
+    if (username === '' || password === '') return
 
     const response = await fetch('http://localhost:3000/auth/signin', {
       method: 'POST',
@@ -47,79 +48,88 @@ function App() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ username, password }),
-    }).then((res) => res.json());
+    })
+      .then((res) => res.json())
+      .catch(() => {
+        return {}
+      })
 
     if (response.accessToken) {
       const newUser = {
         name: username,
         token: response.accessToken,
-      };
-      localStorage.setItem('user', JSON.stringify(newUser));
-      setUser(newUser);
+      }
+      localStorage.setItem('user', JSON.stringify(newUser))
+      setUser(newUser)
     } else {
       try {
-        setError(response.message);
+        setError(response.message)
       } catch {
-        setError(['Unknown Error']);
+        setError(['Unknown Error'])
       }
     }
-  };
+  }
 
   const handleSend = (e) => {
-    e.preventDefault();
-    if (message === '' || streaming) return;
+    e.preventDefault()
+    if (message === '' || streaming) return
 
     const newMessage = {
       content: message,
       role: 'user',
-    };
+    }
 
-    setMessages((messages) => [...messages, newMessage]);
+    setMessages((messages) => [...messages, newMessage])
 
-    const socket = io(process.env.REACT_APP_WS + '/professor', {
-      query: { token: user.token },
-    });
+    const socket = io(process.env.REACT_APP_WS)
 
-    socket.emit('stream', {
+    console.log(message)
+
+    socket.emit('message', {
       message: message,
-    });
+    })
 
-    setStreaming(true);
-    setMessage('');
+    setStreaming(true)
+    setMessage('')
 
-    socket.on('stream', (data) => {
-      const parsedData = JSON.parse(data);
-      if (parsedData.message) {
-        const newMessage = {
-          content: parsedData.message.content,
-          role: 'assistant',
-        };
-        setMessages((messages) => {
-          if (messages[messages.length - 1].role === 'assistant') {
-            messages[messages.length - 1].content = parsedData.message.content;
-            return [...messages];
-          } else {
-            return [...messages, newMessage];
+    socket.on('message', (data) => {
+      console.log('data', data)
+      try {
+        const parsedData = JSON.parse(data)
+        if (parsedData.message) {
+          const newMessage = {
+            content: parsedData.message.content,
+            role: 'assistant',
           }
-        });
-      }
-    });
+          setMessages((messages) => {
+            if (messages[messages.length - 1].role === 'assistant') {
+              messages[messages.length - 1].content = parsedData.message.content
+              return [...messages]
+            } else {
+              return [...messages, newMessage]
+            }
+          })
+        }
+      } catch (err) {}
+    })
 
     socket.on('error', () => {
-      setStreaming(false);
-      localStorage.removeItem('user');
-      setUser(null);
-      socket.disconnect();
-    });
+      setStreaming(false)
+      localStorage.removeItem('user')
+      setUser(null)
+      socket.disconnect()
+    })
 
     socket.on('disconnect', () => {
-      setStreaming(false);
-    });
+      console.log('what')
+      setStreaming(false)
+    })
 
     return () => {
-      socket.disconnect();
-    };
-  };
+      console.log('wwhat')
+      socket.disconnect()
+    }
+  }
 
   function NewlineText({ text }) {
     const newText = text.split('\n').map((str, index, array) =>
@@ -131,17 +141,17 @@ function App() {
           <br />
         </span>
       )
-    );
+    )
 
-    return <>{newText}</>;
+    return <>{newText}</>
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className='App'>
+      <header className='App-header'>
         <div>
           {!user ? (
-            <div className="Login-Box">
+            <div className='Login-Box'>
               <h1>Ws Client</h1>
               <form onSubmit={handleLogin}>
                 <input
@@ -151,7 +161,7 @@ function App() {
                     borderRadius: '10px',
                     marginTop: '20px',
                   }}
-                  placeholder="Username"
+                  placeholder='Username'
                   value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 ></input>
@@ -163,8 +173,8 @@ function App() {
                     borderRadius: '10px',
                     marginTop: '20px',
                   }}
-                  type="password"
-                  placeholder="Password"
+                  type='password'
+                  placeholder='Password'
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                 ></input>
@@ -177,7 +187,7 @@ function App() {
                     borderRadius: '10px',
                     marginLeft: '20px',
                   }}
-                  type="submit"
+                  type='submit'
                 >
                   Login
                 </button>
@@ -195,7 +205,7 @@ function App() {
                       >
                         {err}
                       </p>
-                    );
+                    )
                   })}
                 </div>
               )}
@@ -203,7 +213,7 @@ function App() {
           ) : (
             <div>
               <div
-                className="Chat-Box"
+                className='Chat-Box'
                 style={{
                   width: 1400,
                   height: 800,
@@ -240,7 +250,7 @@ function App() {
                         <NewlineText text={message.content} />
                       </p>
                     </div>
-                  );
+                  )
                 })}
               </div>
               <form onSubmit={handleSend}>
@@ -263,7 +273,7 @@ function App() {
                     borderRadius: '10px',
                     marginLeft: '20px',
                   }}
-                  type="submit"
+                  type='submit'
                 >
                   Send
                 </button>
@@ -273,7 +283,7 @@ function App() {
         </div>
       </header>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
