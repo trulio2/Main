@@ -49,7 +49,7 @@ export class AppService {
       }
     })
 
-    console.log(analysis['1d'])
+    console.log(analysis['5m'])
   }
 
   async getIndicators(binSize: string) {
