@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  mongoosedb:
+    image: mongo:latest
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: username
+      MONGO_INITDB_ROOT_PASSWORD: password
+    volumes:
+      - mongoose:/data/db
+
+volumes:
+  mongoose:
