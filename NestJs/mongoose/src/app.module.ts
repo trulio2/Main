@@ -12,6 +12,7 @@ import { CatsModule } from './cats/cats.module';
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGO_URL'),
+        dbName: configService.get<string>('MONGO_DB_NAME'),
       }),
       inject: [ConfigService],
     }),
