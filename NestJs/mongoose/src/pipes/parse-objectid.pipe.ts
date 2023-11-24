@@ -2,7 +2,9 @@ import { PipeTransform, Injectable, BadRequestException } from '@nestjs/common';
 import { Types } from 'mongoose';
 
 @Injectable()
-export class ParseObjectIdPipe implements PipeTransform<any, Types.ObjectId> {
+export class ParseObjectIdPipe
+  implements PipeTransform<string, Types.ObjectId>
+{
   transform(value: string): Types.ObjectId {
     const validObjectId = Types.ObjectId.isValid(value);
 
