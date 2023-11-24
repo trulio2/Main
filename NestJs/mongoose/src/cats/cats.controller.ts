@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ParseObjectIdPipe } from '../pipes';
 import { CatsService } from './cats.service';
-import { CreateCatDto, FindCatsFilter, UpdateCatDto } from './dto';
+import { CreateCatDto, FindCatsFilterDto, UpdateCatDto } from './dto';
 import { Cat } from './schemas';
 
 @Controller('cats')
@@ -23,8 +23,8 @@ export class CatsController {
   }
 
   @Get()
-  async findAll(@Query() findCatsFilter: FindCatsFilter): Promise<Cat[]> {
-    return this.catsService.findAll(findCatsFilter);
+  async findAll(@Query() findCatsFilterDto: FindCatsFilterDto): Promise<Cat[]> {
+    return this.catsService.findAll(findCatsFilterDto);
   }
 
   @Get(':id')

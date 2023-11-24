@@ -1,8 +1,8 @@
-import { Model } from 'mongoose';
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Cat } from './schemas/cat.schema';
-import { CreateCatDto, FindCatsFilter, UpdateCatDto } from './dto';
+import { Model } from 'mongoose';
+import { CreateCatDto, FindCatsFilterDto, UpdateCatDto } from './dto';
+import { Cat } from './schemas';
 
 @Injectable()
 export class CatsService {
@@ -14,8 +14,8 @@ export class CatsService {
     return createdCat.save();
   }
 
-  async findAll(findCatsFilter: FindCatsFilter): Promise<Cat[]> {
-    const { name, age, breed } = findCatsFilter;
+  async findAll(findCatsFilterDto: FindCatsFilterDto): Promise<Cat[]> {
+    const { name, age, breed } = findCatsFilterDto;
 
     const filter = {};
 
