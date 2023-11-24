@@ -1,8 +1,8 @@
 import { Model } from 'mongoose';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cat } from './schemas/cat.schema';
-import { CreateCatDto } from './dto';
+import { CreateCatDto, UpdateCatDto } from './dto';
 
 @Injectable()
 export class CatsService {
@@ -19,6 +19,32 @@ export class CatsService {
   }
 
   async findById(id: string): Promise<Cat> {
-    return this.catModel.findById(id).exec();
+    const cat = await this.catModel.findById(id).exec();
+
+    if (!cat) {
+      throw new NotFoundException('Cat not found');
+    }
+
+    return cat;
+  }
+
+  async remove(id: string): Promise<Cat> {
+    const cat = await this.findById(id);
+
+    return this.catModel
+      .deleteOne(cat)
+      .exec()
+      .then(() => cat);
+  }
+
+  async update(id: string, updateCatDto: UpdateCatDto): Promise<Cat> {
+    const cat = await this.findById(id);
+
+    Object.assign(cat, updateCatDto);
+
+    return this.catModel
+      .updateOne(cat)
+      .exec()
+      .then(() => cat);
   }
 }
