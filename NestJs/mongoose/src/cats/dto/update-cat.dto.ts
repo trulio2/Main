@@ -7,9 +7,9 @@ export class UpdateCatDto {
 
   @IsNumber()
   @IsOptional()
-  age: number;
+  age?: number;
 
   @IsString()
   @IsOptional()
-  breed: string;
+  breed?: string;
 }

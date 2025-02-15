@@ -12,7 +12,7 @@ import { AppService } from './app.service'
       useFactory: () => {
         const BitMEXClient = require('bitmex-realtime-api')
         return new BitMEXClient({
-          maxTableLen: 10,
+          maxTableLen: 2,
         })
       },
     },

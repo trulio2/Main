@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  datanode:
+    build:
+      context: ..
+      dockerfile: deployments/dataNode.Dockerfile
+    container_name: datanode
+    networks:
+      - app-network
+    ports:
+      - "9091:9091"
+    environment:
+      - BROKER_HOST=cachemanager
+      - BROKER_PORT=9092
+      - LISTEN_ADDRESS=0.0.0.0:9091
+
+  cachemanager:
+    build:
+      context: ..
+      dockerfile: deployments/cacheManager.Dockerfile
+    container_name: cachemanager
+    networks:
+      - app-network
+    ports:
+      - "9092:9092" 
+    environment:
+      - BROKER_HOST=datanode
+      - BROKER_PORT=9091
+      - LISTEN_ADDRESS=0.0.0.0:9092
+
+networks:
+  app-network:
+    driver: bridge

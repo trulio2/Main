@@ -21,12 +21,9 @@ export class AppGateway {
     setInterval(() => {
       this.bitMEXClient.socket.send('ping')
     }, 30 * 1000)
-    this.appService.chartAnalysis()
+
     this.bitMEXClient.addStream('XBTUSD', 'trade', (data: any) => {
-      const length = data.length - 1
-      const newTrade = `New trade: ${data[length].price} ${data[length].side} ${data[length].size}`
-      console.log(newTrade)
-      // this.appService.handleNewData(newTrade, this.server);
+      this.appService.handleCurrentPrice(data)
     })
   }
 }
